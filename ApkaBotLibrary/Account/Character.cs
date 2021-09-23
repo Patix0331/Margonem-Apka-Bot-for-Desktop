@@ -2,6 +2,7 @@
 using ApkaBotLibrary.Requests.ResponseInfo;
 using ApkaBotLibrary.Utils.Settings;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 
@@ -9,55 +10,53 @@ namespace ApkaBotLibrary.Account
 {
     public class Character
     {
-        private Settings _settings = new Settings();
+        private SettingsModel _settings = new SettingsModel();
 
         public CancellationTokenSource cts = new CancellationTokenSource();
 
-        public string FullName { get => $"[{World.ToUpper().Substring(1,1)}{World[2..^0]}]=> {Nick}({lvl}{Prof})"; }
+        public string FullName { get => $"[{World}] {h.nick}({h.lvl}{h.prof})"; }
 
-        public bool Pause { get; set; } = true;
-        //public Dictionary<string, MobileMap> Maps;
+        public bool Pause { get; set; } = false;
 
-        public List<Item> Items;
+        public bool Status { get; set; } = false;
 
-        public List<string> ToSell { get; set; } = new List<string>();
+        public SettingsModel GetSettings => _settings;
 
-        public uint Id;
+        public void SetSettings(SettingsModel value) => _settings = value;
 
-        public string Nick;
+        public Dictionary<string, Item> ToSell { get; set; } = new Dictionary<string, Item>();
 
-        public uint lvl;
+        public Dictionary<string, Item> Items { get; set; } = new Dictionary<string, Item>();
 
-        public char Prof;
+        public List<MobileMaps> Maps { get; set; } = new List<MobileMaps>();
 
         [JsonProperty("db")]
         public string World;
 
-        [JsonProperty("zycie")]
-        public uint Health;
+        public CharacterInfo h { get; set; } = new CharacterInfo();
 
-        [JsonProperty("max_zycie")]
-        public uint MaxHealth;
+        #region INFO STATS
+        public bool SuccessUnblocking { get; set; } = true;
 
-        public int Stamina;
+        public int BlessLeft { get; set; }
 
-        //public char Plec;
+        public int ArrowsLeft { get; set; }
+        public int HealPowerLeft { get; set; }
 
-        public ulong Exp;
+        public Dictionary<DateTime, Item> SoldItems { get; set; } = new Dictionary<DateTime, Item>();
 
-        public string Clanname;
+        public string StatusInfo { get; set; } = "Stopped";
 
-        //public long clan;
+        public int FreeSpaceLeft { get; set; }
+        public bool FirstTime { get; set; } = true;
+        public ulong StartGold { get; set; }
+        public ulong StartExp { get; set; }
+        public int StaminaCounter { get; set; }
+        public int DeathCounter { get; set; }
+        public bool IsDead { get; set; }
+        #endregion
 
-        //public long clan_rank;
-
-        //public long uprawnienia;
-
-        //public string icon;
-
-        //public long last;
-
-        public Settings GetSettings => _settings;
+        public string BrowserToken { get; set; }
 #nullable enable
         public string? Token { get; set; }
     }

@@ -9,5 +9,8 @@ namespace ApkaBotLibrary.Requests.ResponseInfo
     {
         [JsonProperty("states")]
         public Dictionary<string, int> Items { get; set; }
+
+        [JsonProperty("free")]
+        public int FreeSpaceLeft { get; set; }
     }
 }

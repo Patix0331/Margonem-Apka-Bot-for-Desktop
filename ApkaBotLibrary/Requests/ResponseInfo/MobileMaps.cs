@@ -4,18 +4,17 @@ namespace ApkaBotLibrary.Requests
 {
     public class MobileMaps
     {
-        public string Id { get; set; }
-
+        public int Id { get; set; } = 2675;
         [JsonProperty("name")]
-        public string Name { get; set; }
+        public string Name { get; set; } = "Leśny Gąszcz [1-5]";
 
-        //[JsonProperty("done")]
-        //public long Done { get; set; }
+        [JsonProperty("done")]
+        public int Done { get; set; } = 0;
 
         [JsonProperty("next_map")]
-        public int NextMap { get; set; }
+        public int NextMap { get; set; } = 2676;
 
         [JsonProperty("req_map")]
-        public int ReqMap { get; set; }
+        public int ReqMap { get; set; } = 0;
     }
 }

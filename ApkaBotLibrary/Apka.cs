@@ -10,13 +10,15 @@ namespace ApkaBotLibrary
     {
         private static Apka _instance;
 
-        private Request _req = new Request();
+        private Request _req;
 
-        private Dictionary<string, Character> _characters = new Dictionary<string, Character>();
+        public Dictionary<string, Character> Characters = new Dictionary<string, Character>();
 
         private Dictionary<string, bool> _characterMaps { get; set; } = new Dictionary<string, bool>();
 
-        public List<Chat> Messages = new List<Chat>();
+        //public List<Chat> Messages = new List<Chat>();
+
+        public string Login { get; set; }
 
         /// <summary>
         /// List of mobile maps
@@ -31,22 +33,17 @@ namespace ApkaBotLibrary
         /// <summary>
         /// Get instance of Requests class.
         /// </summary>
-        public Request Req => this._req;
+        public Request Req => _req ?? (_req = new Request());
 
-        /// <summary>
-        /// Add character to Dict of characters.
-        /// </summary>
-        public void SetCharacters(Dictionary<string, Character> characters) => _characters = characters;
-
-        /// <summary>
-        /// Get list of characters from this account.
-        /// </summary>
-        public Dictionary<string, Character> GetCharacters => _characters;
+        public void ResetReq()
+        {
+            _req = new Request();
+        }
 
         /// <summary>
         /// Get character by ID.
         /// </summary>
-        public Character GetCharacter(string id) => _characters[id];
+        public Character GetCharacter(string id) => Characters[id];
 
         /// <summary>
         /// Set number of characters on the same world.
@@ -57,6 +54,11 @@ namespace ApkaBotLibrary
         /// Get number of characters on the same world.
         /// </summary>
         public Dictionary<string, bool> NumberPerWorld => _characterMaps;
+
+
+        public string OnWhichCharacterAtm { get; set; } = "";
+        public bool Exit { get; set; }
+        public bool ParallelAttacking { get; set; }
     }
 
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 namespace ApkaBotLibrary.Requests.ResponseInfo
-{
+{   
     public class Item
     {
         [JsonProperty(PropertyName = "name")]
@@ -11,6 +11,9 @@ namespace ApkaBotLibrary.Requests.ResponseInfo
         [JsonProperty(PropertyName = "id")]
         public string Id { get; set; }
 
+        [JsonProperty(PropertyName = "hid")]
+        public string Hid { get; set; }
+
         [JsonProperty(PropertyName = "loc")]
         public string loc { get; set; }
 
@@ -18,10 +21,10 @@ namespace ApkaBotLibrary.Requests.ResponseInfo
         public string icon { get; set; }
 
         [JsonProperty(PropertyName = "x")]
-        public string x { get; set; }
+        public int x { get; set; }
 
         [JsonProperty(PropertyName = "y")]
-        public string y { get; set; }
+        public int y { get; set; }
 
         [JsonProperty(PropertyName = "cl")]
         public string cl { get; set; }
@@ -30,9 +33,12 @@ namespace ApkaBotLibrary.Requests.ResponseInfo
         public string pr { get; set; }
 
         [JsonProperty(PropertyName = "st")]
-        public string st { get; set; }
+        public int st { get; set; }
 
         [JsonProperty(PropertyName = "stat")]
         public string stat { get; set; }
+
+        [JsonProperty(PropertyName = "del")]
+        public int Del { get; set; }
     }
 }
